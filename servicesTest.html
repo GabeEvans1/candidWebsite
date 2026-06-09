@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candid Computers — Services</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Services page overrides ── */
+    .services-hero {
+      padding: 5rem 2rem 3rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .services-stats {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 2rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    /* ── Service cards grid ── */
+    .services-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .svc-card {
+      background: var(--bg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .svc-card:hover {
+      background: var(--surface);
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .svc-card:hover::after { width: 100%; }
+
+    .svc-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .svc-icon {
+      width: 44px; height: 44px;
+      background: rgba(218, 66, 66, 0.1);
+      border: 1px solid rgba(218, 66, 66, 0.2);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .svc-num {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--border);
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .svc-card:hover .svc-num { color: var(--accent); }
+
+    .svc-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .svc-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .svc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .svc-tag {
+      font-size: 0.7rem;
+      font-family: var(--font-body);
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .svc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .svc-price {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .svc-arrow {
+      color: var(--border);
+      font-size: 1.1rem;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .svc-card:hover .svc-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    /* ── Wide bottom row ── */
+    .svc-wide-row {
+      max-width: var(--max);
+      margin: 1px auto 0;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: hidden;
+    }
+
+    .svc-wide-cell {
+      background: var(--bg);
+      padding: 2rem 2.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+
+    .svc-wide-cell:hover {
+      background: var(--surface);
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .svc-wide-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .svc-wide-title {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+
+    .svc-wide-body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+
+    .svc-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .svc-bullet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .svc-bullet::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── CTA strip ── */
+    .services-cta {
+      max-width: var(--max);
+      margin: 4rem auto 0;
+      padding: 0 2rem 4rem;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .svc-wide-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+      .svc-wide-row { padding: 0 1rem; }
+      .services-stats { gap: 1.5rem; padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Candid Computers</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="services-hero">
+    <p class="section-label">What we offer</p>
+    <h2>Services built around<br>your business.</h2>
+    <p style="color: var(--muted); max-width: 480px; margin-top: 1rem; font-size: 0.95rem;">Everything is tailored. No cookie-cutter packages, no upselling you on things you don't need — just the right solution for your situation.</p>
+  </div>
+
+  <div class="services-stats">
+    <div>
+      <div class="stat-num">6</div>
+      <div class="stat-label">Service areas</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Tailored solutions</div>
+    </div>
+    <div>
+      <div class="stat-num">1</div>
+      <div class="stat-label">Point of contact</div>
+    </div>
+    <div>
+      <div class="stat-num">Free</div>
+      <div class="stat-label">Initial consultation</div>
+    </div>
+  </div>
+
+  <div class="services-grid">
+
+    <a href="service-custom-computers.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">🖥️</div>
+        <span class="svc-num">01</span>
+      </div>
+      <div class="svc-name">Custom Built Computers</div>
+      <div class="svc-desc">Hand-picked components built to your exact workload and budget. Gaming rigs, workstations, silent builds — spec'd right the first time.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Gaming</span>
+        <span class="svc-tag">Workstation</span>
+        <span class="svc-tag">Silent builds</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">From $500</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="service-computer-repair.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">🔧</div>
+        <span class="svc-num">02</span>
+      </div>
+      <div class="svc-name">Computer Repair &amp; Data Recovery</div>
+      <div class="svc-desc">Virus removal, hardware failure, won't boot, lost files — we diagnose fast and recover what matters most.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Virus removal</span>
+        <span class="svc-tag">Data recovery</span>
+        <span class="svc-tag">Hardware repair</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">From $100</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="service-smart-home.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">🏠</div>
+        <span class="svc-num">03</span>
+      </div>
+      <div class="svc-name">Smart Home Installation</div>
+      <div class="svc-desc">Lighting, security cameras, locks, thermostats, voice control — fully integrated and actually easy to use.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Lighting</span>
+        <span class="svc-tag">Security</span>
+        <span class="svc-tag">Automation</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">From $250</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="service-av.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">📺</div>
+        <span class="svc-num">04</span>
+      </div>
+      <div class="svc-name">A/V Installation</div>
+      <div class="svc-desc">TV mounts, surround sound, home theaters, conference room AV. Clean cable management, professional finish.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Home theater</span>
+        <span class="svc-tag">TV mounting</span>
+        <span class="svc-tag">Commercial AV</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">From $400</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="service-software.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">⚙️</div>
+        <span class="svc-num">05</span>
+      </div>
+      <div class="svc-name">Software Solutions</div>
+      <div class="svc-desc">Custom tools that eliminate repetitive work. Automation pipelines, integrations, internal dashboards — built for how your business actually runs.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Automation</span>
+        <span class="svc-tag">Integrations</span>
+        <span class="svc-tag">Web apps</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">From $600</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="service-it.html" class="svc-card">
+      <div class="svc-card-top">
+        <div class="svc-icon">🖧</div>
+        <span class="svc-num">06</span>
+      </div>
+      <div class="svc-name">Business IT Solutions</div>
+      <div class="svc-desc">Networking, server setup, managed support, compliance frameworks. Your IT partner — not just a break-fix guy.</div>
+      <div class="svc-tags">
+        <span class="svc-tag">Networking</span>
+        <span class="svc-tag">Managed IT</span>
+        <span class="svc-tag">Compliance</span>
+      </div>
+      <div class="svc-footer">
+        <span class="svc-price">Custom quote</span>
+        <span class="svc-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="svc-wide-row">
+    <div class="svc-wide-cell">
+      <div class="svc-wide-label">Why Candid Computers</div>
+      <div class="svc-wide-title">One person who knows<br>your whole stack.</div>
+      <div class="svc-wide-body">From the hardware on your desk to the software running your business — we handle it all. No hand-offs, no blame-shifting, no "that's not our department."</div>
+      <div class="svc-bullets">
+        <div class="svc-bullet">Hardware + software under one roof</div>
+        <div class="svc-bullet">Transparent pricing, no hidden fees</div>
+        <div class="svc-bullet">Local, hands-on service in Bonner County</div>
+        <div class="svc-bullet">Ongoing support, not just one-time fixes</div>
+      </div>
+    </div>
+    <a href="service-software.html" class="svc-wide-cell">
+      <div class="svc-wide-label">Website development</div>
+      <div class="svc-wide-title">We build websites too.</div>
+      <div class="svc-wide-body">Custom-coded sites for small businesses. Fast, clean, no page-builder bloat. Pair it with a full IT setup and get everything from one contact.</div>
+      <div class="svc-tags" style="margin-bottom: 1rem;">
+        <span class="svc-tag">Custom HTML/CSS</span>
+        <span class="svc-tag">Hosting setup</span>
+        <span class="svc-tag">SEO basics</span>
+      </div>
+      <span class="svc-price">Learn more →</span>
+    </a>
+  </div>
+
+  <div class="services-cta">
+    <hr class="divider">
+    <h2>Not sure what you need?</h2>
+    <p style="color: var(--muted); margin: 1rem auto 2rem; max-width: 400px;">Let's have a quick call. We'll figure out together what makes sense for your situation.</p>
+    <a href="contact.html" class="btn">Get a free consultation</a>
+  </div>
+
+  <footer>
+    <p>© 2026 Candid Computers. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

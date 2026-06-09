@@ -1,0 +1,543 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap');
+
+  .cc-wrap {
+    background: #0d0f12;
+    color: #e8e6e0;
+    font-family: 'Sora', sans-serif;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .cc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .cc-nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: #e8e6e0;
+    letter-spacing: 0.03em;
+  }
+
+  .cc-nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+
+  .cc-nav-links a {
+    color: rgba(232,230,224,0.5);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .cc-nav-links a.active,
+  .cc-nav-links a:hover { color: #e8e6e0; }
+
+  .cc-hero {
+    padding: 4rem 2rem 3rem;
+    max-width: 860px;
+  }
+
+  .cc-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5b9cf6;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cc-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: #5b9cf6;
+  }
+
+  .cc-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.2rem;
+    color: #f2f0ea;
+  }
+
+  .cc-hero h1 em {
+    font-style: normal;
+    color: #5b9cf6;
+  }
+
+  .cc-hero p {
+    color: rgba(232,230,224,0.55);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .cc-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 3rem;
+  }
+
+  .cc-stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f2f0ea;
+    letter-spacing: -0.02em;
+  }
+
+  .cc-stat-label {
+    font-size: 12px;
+    color: rgba(232,230,224,0.4);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .cc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 0 0 1px;
+  }
+
+  .cc-card {
+    background: #0d0f12;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    cursor: pointer;
+  }
+
+  .cc-card:hover { background: #13161c; }
+
+  .cc-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: #5b9cf6;
+    transition: width 0.35s ease;
+  }
+
+  .cc-card:hover::after { width: 100%; }
+
+  .cc-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .cc-card-icon {
+    width: 42px; height: 42px;
+    background: rgba(91,156,246,0.1);
+    border: 1px solid rgba(91,156,246,0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #5b9cf6;
+  }
+
+  .cc-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(232,230,224,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  .cc-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f2f0ea;
+    line-height: 1.3;
+  }
+
+  .cc-card-desc {
+    font-size: 13px;
+    color: rgba(232,230,224,0.5);
+    line-height: 1.65;
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .cc-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .cc-tag {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: rgba(232,230,224,0.5);
+    letter-spacing: 0.03em;
+  }
+
+  .cc-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cc-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #5b9cf6;
+  }
+
+  .cc-arrow {
+    font-size: 16px;
+    color: rgba(232,230,224,0.3);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .cc-card:hover .cc-arrow {
+    transform: translateX(4px);
+    color: #5b9cf6;
+  }
+
+  .cc-wide-card {
+    grid-column: span 3;
+    background: #0d0f12;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .cc-wide-left {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .cc-wide-right {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.25s;
+    cursor: pointer;
+  }
+
+  .cc-wide-right:hover { background: #13161c; }
+
+  .cc-wide-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(232,230,224,0.35);
+    margin-bottom: 0.8rem;
+  }
+
+  .cc-wide-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f2f0ea;
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+  }
+
+  .cc-wide-desc {
+    font-size: 13px;
+    color: rgba(232,230,224,0.5);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .cc-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .cc-bullet {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(232,230,224,0.6);
+    font-weight: 300;
+  }
+
+  .cc-bullet-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #5b9cf6;
+    flex-shrink: 0;
+  }
+
+  .cc-cta-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 2rem;
+    background: rgba(91,156,246,0.05);
+    border-top: 1px solid rgba(91,156,246,0.12);
+  }
+
+  .cc-cta-text h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #f2f0ea;
+    margin: 0 0 4px;
+  }
+
+  .cc-cta-text p {
+    font-size: 13px;
+    color: rgba(232,230,224,0.45);
+    margin: 0;
+    font-weight: 300;
+  }
+
+  .cc-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 12px 24px;
+    background: #5b9cf6;
+    color: #0d0f12;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .cc-btn:hover { background: #7ab5ff; transform: translateY(-1px); }
+
+  .cc-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    color: rgba(232,230,224,0.25);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<div class="cc-wrap">
+  <nav class="cc-nav">
+    <span class="cc-nav-logo">Candid Computers</span>
+    <ul class="cc-nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#" class="active">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cc-hero">
+    <div class="cc-eyebrow">What we offer</div>
+    <h1>Services built around<br><em>your</em> business.</h1>
+    <p>Everything is tailored. No cookie-cutter packages, no upselling you on things you don't need — just the right solution for your situation.</p>
+  </div>
+
+  <div class="cc-stats">
+    <div>
+      <div class="cc-stat-val">6</div>
+      <div class="cc-stat-label">Service areas</div>
+    </div>
+    <div>
+      <div class="cc-stat-val">100%</div>
+      <div class="cc-stat-label">Tailored solutions</div>
+    </div>
+    <div>
+      <div class="cc-stat-val">1</div>
+      <div class="cc-stat-label">Point of contact</div>
+    </div>
+    <div>
+      <div class="cc-stat-val">Free</div>
+      <div class="cc-stat-label">Initial consultation</div>
+    </div>
+  </div>
+
+  <div class="cc-grid">
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-cpu" aria-hidden="true"></i></div>
+        <span class="cc-card-num">01</span>
+      </div>
+      <div class="cc-card-name">Custom Built Computers</div>
+      <div class="cc-card-desc">Hand-picked components, built to your exact workload and budget. Gaming rigs, workstations, silent builds — spec'd right the first time.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Gaming</span>
+        <span class="cc-tag">Workstation</span>
+        <span class="cc-tag">Silent builds</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">From $500</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-tool" aria-hidden="true"></i></div>
+        <span class="cc-card-num">02</span>
+      </div>
+      <div class="cc-card-name">Computer Repair &amp; Data Recovery</div>
+      <div class="cc-card-desc">Virus removal, hardware failure, won't boot, lost files — we diagnose fast and recover what matters most.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Virus removal</span>
+        <span class="cc-tag">Data recovery</span>
+        <span class="cc-tag">Hardware repair</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">From $100</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-home-signal" aria-hidden="true"></i></div>
+        <span class="cc-card-num">03</span>
+      </div>
+      <div class="cc-card-name">Smart Home Installation</div>
+      <div class="cc-card-desc">Lighting, security cameras, locks, thermostats, voice control — fully integrated and actually easy to use.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Lighting</span>
+        <span class="cc-tag">Security</span>
+        <span class="cc-tag">Automation</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">From $250</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-device-tv" aria-hidden="true"></i></div>
+        <span class="cc-card-num">04</span>
+      </div>
+      <div class="cc-card-name">A/V Installation</div>
+      <div class="cc-card-desc">TV mounts, surround sound, home theaters, conference room AV. Clean cable management, professional finish.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Home theater</span>
+        <span class="cc-tag">TV mounting</span>
+        <span class="cc-tag">Commercial AV</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">From $400</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-code" aria-hidden="true"></i></div>
+        <span class="cc-card-num">05</span>
+      </div>
+      <div class="cc-card-name">Software Solutions</div>
+      <div class="cc-card-desc">Custom tools that eliminate repetitive work. Automation pipelines, integrations, internal dashboards — built for how your business actually runs.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Automation</span>
+        <span class="cc-tag">Integrations</span>
+        <span class="cc-tag">Web apps</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">From $600</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a class="cc-card" href="#">
+      <div class="cc-card-top">
+        <div class="cc-card-icon"><i class="ti ti-server" aria-hidden="true"></i></div>
+        <span class="cc-card-num">06</span>
+      </div>
+      <div class="cc-card-name">Business IT Solutions</div>
+      <div class="cc-card-desc">Networking, server setup, managed support, compliance frameworks. Your IT partner — not just a break-fix guy.</div>
+      <div class="cc-card-tags">
+        <span class="cc-tag">Networking</span>
+        <span class="cc-tag">Managed IT</span>
+        <span class="cc-tag">Compliance</span>
+      </div>
+      <div class="cc-card-footer">
+        <span class="cc-price">Custom quote</span>
+        <i class="ti ti-arrow-right cc-arrow" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <div class="cc-wide-card">
+      <div class="cc-wide-left">
+        <div class="cc-wide-label">Why Candid Computers</div>
+        <div class="cc-wide-title">One person who<br>knows your whole stack.</div>
+        <div class="cc-wide-desc">From the hardware on your desk to the software running your business — we handle it all. No hand-offs, no blame-shifting, no "that's not our department."</div>
+        <div class="cc-bullets">
+          <div class="cc-bullet"><div class="cc-bullet-dot"></div>Hardware + software under one roof</div>
+          <div class="cc-bullet"><div class="cc-bullet-dot"></div>Transparent pricing, no hidden fees</div>
+          <div class="cc-bullet"><div class="cc-bullet-dot"></div>Local, hands-on service in Sandpoint, ID</div>
+          <div class="cc-bullet"><div class="cc-bullet-dot"></div>Ongoing support, not just one-time fixes</div>
+        </div>
+      </div>
+      <div class="cc-wide-right">
+        <div class="cc-wide-label">Website development</div>
+        <div class="cc-wide-title">We build websites too.</div>
+        <div class="cc-wide-desc">Custom-coded sites for small businesses. Fast, clean, no page-builder bloat. Pair it with a full IT setup and get everything from one contact.</div>
+        <div class="cc-card-tags" style="margin-top: 0.5rem;">
+          <span class="cc-tag">Custom HTML/CSS</span>
+          <span class="cc-tag">Hosting setup</span>
+          <span class="cc-tag">SEO basics</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-top: 0.5rem;">
+          <span class="cc-price" style="font-size: 13px;">Learn more</span>
+          <i class="ti ti-arrow-right cc-arrow" aria-hidden="true" style="color: #5b9cf6;"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cc-cta-strip">
+    <div class="cc-cta-text">
+      <h2>Not sure what you need?</h2>
+      <p>Let's have a quick call. We'll figure out together what makes sense for your situation.</p>
+    </div>
+    <a class="cc-btn" href="#">Get a free consultation</a>
+  </div>
+
+  <div class="cc-footer">© 2026 Candid Computers. All rights reserved.</div>
+</div>

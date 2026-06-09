@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candid Computers</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Candid Computers</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <p class="section-label">Get in touch</p>
+    <h2>Let's talk about<br>your project.</h2>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Fill out the form and we'll get back to you within one business day. Prefer a call? Reach us directly below.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <span>📍</span>
+            <div>
+              <strong>Location</strong>
+              114 N. Boyer Ave, Sandpoint, ID 83864
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <span>📞</span>
+            <div>
+              <strong>Phone</strong>
+              (208) 946-9317
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <span>✉️</span>
+            <div>
+              <strong>Email</strong>
+              candidcomps@gmail.com
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <span>🕐</span>
+            <div>
+              <strong>Hours</strong>
+              Mon–Fri, 9:30am - 3:00pm PDT
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div>
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" placeholder="Jane" required />
+          </div>
+          <div>
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" placeholder="Smith" required />
+          </div>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+        </div>
+        <div>
+          <label for="service">Interested in</label>
+          <select id="service" name="service">
+            <option value="">Select a service...</option>
+            <option>Custom PC</option>
+            <option>PC Repair</option>
+            <option>Installation</option>
+            <option>Software/IT solutions</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a bit about what you're working on..."></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%; text-align:center;">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Candid Computers All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
