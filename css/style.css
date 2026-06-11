@@ -176,6 +176,10 @@ h3 {
   
   height: 250px;
 }
+
+.card p {
+  color: var(--muted);
+}
 .card:hover { border-color: var(--accent); transform: translateY(-3px); }
 .card-icon {
   font-size: 2rem;
