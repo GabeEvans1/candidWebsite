@@ -32,6 +32,7 @@ a:hover { text-decoration: none; }
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap');
 
 /* ── Nav ── */
+/* ── Nav ── */
 nav {
   position: sticky;
   top: 0;
@@ -39,11 +40,12 @@ nav {
   background: rgba(15,15,15,0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
+  padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
+  gap: 1rem;
 }
 .nav-logo {
   font-family: var(--font-head);
@@ -51,23 +53,43 @@ nav {
   font-weight: 700;
   color: var(--accent);
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: clamp(0.75rem, 2vw, 2rem);
   list-style: none;
 }
 .nav-links a {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: color 0.2s;
+  white-space: nowrap;
 }
-.nav-links a:hover,
-.nav-links a.active { color: var(--text); text-decoration: none; }
-.nav-links a.active { border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+
+@media (max-width: 540px) {
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: 0.75rem 1.25rem;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+}
+
 
 /* ── Page wrapper ── */
 .page { max-width: var(--max); margin: 0 auto; padding: 4rem 2rem; }
@@ -177,6 +199,8 @@ h3 {
   height: 250px;
 }
 
+
+
 .card p {
   color: var(--muted);
 }
@@ -188,16 +212,25 @@ h3 {
 
 
 a.card {
-  color: var(--text);
-  text-decoration: none;
-  
+  position: relative;
+  padding-bottom: 3rem;
+}
+a.card::after {
+  content: ' See more→';
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.5rem;
+  color: var(--border);
+  font-size: 1rem;
+  transition: color 0.2s, transform 0.2s;
+}
+a.card:hover::after {
+  color: var(--accent);
+  transform: translateX(4px);
 }
 
 a.card h3 {
-  display: -webkit-box;
-  
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: var(--text);
 }
 
 a.card p {
@@ -247,6 +280,16 @@ a.card:hover {
   line-height: 1;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .services-stats {
+    flex-wrap: nowrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1.25rem 1rem;
+  }
+}
+
 .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
 
 /* ── Services page ── */

@@ -21,13 +21,18 @@
   <section class="hero">
     <p class="hero-label">Welcome to Candid Computers.</p>
     <h1>We build things<br>that <span>work.</span></h1>
-    <p>Serving people in the Bonner County area with reliable technology solutions since for 15+ years</p>
+    <p>Serving people in the Bonner County area with reliable technology solutions for 15+ years</p>
     <div>
       <a href="services.html" class="btn">Our Services</a>
       <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+
+
+      
     </div>
   </section>
 
+   
+  
   <div class="page" style="padding-top: 0;">
     <hr class="divider">
 
@@ -39,48 +44,130 @@
   <a href="service-custom-computers.html" class="card">
     <div class="card-icon"></div>
     <h3>Custom Built Computers</h3>
-    <p>We get things done on time, every time. No fluff, no delays.</p>
+    <p>Build your perfect machine with our custom computer building service.</p>
   </a>
 
   <a href="service-computer-repair.html" class="card">
     <div class="card-icon"></div>
     <h3>Computer Repair & Data Recovery</h3>
-    <p>Detail-oriented approach that ensures quality at every step.</p>
+    <p>Get your devices back in working order with our reliable repair and data recovery services.</p>
   </a>
 
   <a href="service-smart-home.html" class="card">
     <div class="card-icon"></div>
     <h3>Smart Home Installation</h3>
-    <p>You get a real person, not a ticket queue. We're here when you need us.</p>
+    <p>Professional installation of smart home systems for a seamless, connected living experience.</p>
   </a>
 
 </div>
 
 <div class="grid-3">
 
-  <a href="service-av.html" class="card">
+  <a href="service-website.html" class="card">
     <div class="card-icon"></div>
-    <h3>A/V Installation</h3>
-    <p>We get things done on time, every time. No fluff, no delays.</p>
+    <h3>Web Design</h3>
+    <p>Custom websites that look great and perform well. From simple landing pages to complex web applications, we build digital experiences that drive results.</p>
   </a>
 
   <a href="service-software.html" class="card">
     <div class="card-icon"></div>
     <h3>Software Solutions</h3>
-    <p>Detail-oriented approach that ensures quality at every step.</p>
+    <p>Custom software applications tailored to your business needs, from simple automation to complex enterprise solutions.</p>
   </a>
 
   <a href="service-it.html" class="card">
     <div class="card-icon"></div>
     <h3>Business IT Solutions</h3>
-    <p>You get a real person, not a ticket queue. We're here when you need us.</p>
+    <p>On-call support, networking, and managed IT for small businesses.</p>
   </a>
 
 </div>
 
+
+
+
    
 
     <hr class="divider">
+
+<!-- About Teaser Banner — paste this into index.html where you want it -->
+<a href="about.html" class="about-teaser">
+  <div class="about-teaser-avatars">
+    <img src="images/kyle.jpg" alt="Kyle" />
+    <img src="images/wally.jpg" alt="Wall-E" />
+    <img src="images/gabe.jpg" alt="Gabe" />
+  </div>
+  <div class="about-teaser-text">
+    <strong>A small team with 25+ years of experience.</strong>
+    <span>Local, hands-on, and easy to reach.</span>
+  </div>
+  <span class="about-teaser-cta">Meet the team →</span>
+</a>
+
+<style>
+.about-teaser {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-top: 3rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.about-teaser:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  color: var(--text);
+  text-decoration: none;
+}
+.about-teaser-avatars {
+  display: flex;
+  flex-shrink: 0;
+}
+.about-teaser-avatars img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--surface);
+  margin-right: -10px;
+}
+.about-teaser-avatars img:last-child { margin-right: 0; }
+.about-teaser-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.about-teaser-text strong {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.about-teaser-text span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.about-teaser-cta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+@media (max-width: 540px) {
+  .about-teaser { flex-wrap: wrap; gap: 1rem; }
+  .about-teaser-cta { width: 100%; }
+}
+</style>
+
+<hr class="divider">
 
     <p style="text-align:center; color: var(--muted); margin-bottom: 1.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">Trusted by great companies</p>
     <div style="display:flex; gap: 3rem; justify-content: center; flex-wrap: wrap; color: var(--border); font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;">
